@@ -1,2 +1,2 @@
-# assistente_virtual
-Projeto em python
+# Assistente_virtual
+Criando uma assistente virtual com python.
