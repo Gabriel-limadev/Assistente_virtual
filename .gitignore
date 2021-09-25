@@ -2,6 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
+jarvis-assistente-327121-994d1596bfa5.json
 
 # C extensions
 *.so
