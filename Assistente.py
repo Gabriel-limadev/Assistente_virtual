@@ -6,7 +6,8 @@ import speech_recognition as sr
 from requests import get
 from bs4 import BeautifulSoup
 import webbrowser as browser
-import json
+from paho.mqtt import publish
+import paho.mqtt.client as mqtt
 
 from gtts import gTTS  # Biblioteca principal de transformação de textos em audios
 from subprocess import call  # biblioteca para executar o audio no MAC e LINUX
@@ -81,6 +82,10 @@ def executa_comandos(trigger):
         previsao_tempo(tempo=True)
     elif 'temperatura de hoje' in trigger:
         previsao_tempo(minmax=True)
+    elif 'liga a luz' in trigger:
+        publica_mqtt('1')
+    elif 'apaga a luz' in trigger:
+        publica_mqtt('0')
     else:
         mensagem = trigger.strip(hotword)
         cria_audio(mensagem, 'repetir0', '')
@@ -125,6 +130,48 @@ def previsao_tempo(tempo=False, minmax=False):
         cria_audio(mensagem, 'tempo', '')
 
 
+def publica_mqtt(cod):
+    if cod == '1':
+        mensagem = 'Luz ligada'
+        cria_audio(mensagem, 'luz', '')
+    if cod == '0':
+        mensagem = 'Luz desligada'
+        cria_audio(mensagem, 'luz', '')
+
+    def on_connect(client, userdata, flags, rc):
+        if rc == 0:
+            print("Connected successfully")
+        else:
+            print("Connect returned result code: " + str(rc))
+
+    # The callback for when a PUBLISH message is received from the server.
+    def on_message(client, userdata, msg):
+        print("Received message: " + msg.topic + " -> " + msg.payload.decode("utf-8"))
+
+    # create the client
+    client = mqtt.Client()
+    client.on_connect = on_connect
+    client.on_message = on_message
+
+    # enable TLS
+    client.tls_set(tls_version=mqtt.ssl.PROTOCOL_TLS)
+
+    # set username and password
+    client.username_pw_set("assistente", "Assistente2021")
+
+    # connect to HiveMQ Cloud on port 8883
+    client.connect("03de71e02afd4413b5c06f33ffe856bd.s1.eu.hivemq.cloud", 8883)
+
+    # subscribe to the topic "my/test/topic"
+    client.subscribe("my/test/topic")
+
+    # publish "Hello" to the topic "my/test/topic"
+    client.publish("my/test/topic", cod)
+
+    # Blocking call that processes network traffic, dispatches callbacks and handles reconnecting.
+    client.loop_forever()
+
+
 def main():
     arq = 'audios/bem_vindo.mp3'
     executa_audio(arq)
@@ -132,6 +179,4 @@ def main():
 
 main()
 
-"""AREA DE CRIAÇÃO DE AUDIOS"""
-# cria_audio(f'Olá, Sou sua assistente. O que posso ajudar?', 'bem_vindo', '')
-# cria_audio('um minuto por favor!', 'paciencia', '')
+

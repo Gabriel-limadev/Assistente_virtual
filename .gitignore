@@ -3,6 +3,8 @@ __pycache__/
 *.py[cod]
 *$py.class
 jarvis-assistente-327121-994d1596bfa5.json
+audios/
+mtqq_client.py
 
 # C extensions
 *.so
