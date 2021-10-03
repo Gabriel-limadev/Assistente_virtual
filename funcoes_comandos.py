@@ -39,7 +39,7 @@ def ultimas_noticias():
     site = get('https://news.google.com/rss?hl=pt-BR&gl=BR&ceid=BR:pt-419')
     noticias = BeautifulSoup(site.text, 'html.parser')
     n = 1
-    for item in noticias.findAll('item')[:1]:
+    for item in noticias.findAll('item')[:2]:
         mensagem = item.title.text
         cria_audio(mensagem, 'mensagem0', '')
         n += 1
@@ -134,3 +134,4 @@ def executa_comandos(trigger):
         cria_audio(mensagem, 'repetir0', '')
         print('COMANDO INVÁLIDO', mensagem)
         executa_audio('audios/pagamento_invalido.mp3')
+
