@@ -1,16 +1,13 @@
-# Assistente_virtual 
-Projeto de uma assistente virtual com python.
+## 💻 Ensinando o Computador a falar
 
- 
- **ENSINANDO O COMPUTADOR A FALAR!**
-
- Com apenas poucas linhas de código pude fazer meu computador responder comandos especificos.  Te apresento 'assistente' (criatividade nota mil), minha assistente virtual.
+ Com apenas poucas linhas de código pude fazer meu computador responder comandos especificos. 
+ Te apresento 'assistente' (criatividade nota mil), minha assistente virtual.
  
  <!--VIDEO DE APRESENTAÇÃO-->
  
  
- ### Comandos de voz
- Como podemos ver minha assistente possui algumas pequenas funçÕes: 
+ ## 🧏🏻‍♂️Comandos de voz
+Minha assistente possui algumas pequenas funções: 
 
 <table style="text-align:center">
     <tr>
@@ -36,14 +33,13 @@ Projeto de uma assistente virtual com python.
 </table>
 
 
+## 🧪 Tecnologias
+
+Esse projeto foi desenvolvido com as seguintes tecnologias:
+- [Python](https://www.python.org/)
 
 
-### Conclusão
-Projeto realizado com o acompanhamento da plataforma [Alura](https://cursos.alura.com.br/) com o curso [Internet das coisas: Seu assistente pessoal em python](https://www.alura.com.br/curso-online-iot-assistente-pessoal-python).
-
-Com ele pude consumir algumas APIS, aprender o básico de ocmo funciona uma inteligencia artificial, além de praticar comandos em python.
-
-Espero que tenha gostado!
+Este é um projeto desenvolvido com a equipe **[Alura](https://www.alura.com.br/)**
 
 
 
